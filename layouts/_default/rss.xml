@@ -17,6 +17,7 @@
         <title>{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{.}} on {{ end }}{{ .Site.Title }}{{ end }}</title>
         <link>{{ .Permalink }}</link>
         <description>Recent content {{ if ne  .Title  .Site.Title }}{{ with .Title }}in {{.}} {{ end }}{{ end }}on {{ .Site.Title }}</description>
+        <language>{{.}}</language>{{end}}{{ with .Site.Params.Author.email }}
         <managingEditor>{{.}}{{ with $.Site.Params.Author.name }} ({{.}}){{end}}</managingEditor>{{end}}{{ with .Site.Params.Author.email }}
         <webMaster>{{.}}{{ with $.Site.Params.Author.name }} ({{.}}){{end}}</webMaster>{{end}}{{ with .Site.Copyright }}
         <copyright>{{.}}</copyright>{{end}}{{ if not .Date.IsZero }}
@@ -38,7 +39,8 @@
         <description>
             {{- $image := partial "helper/image" (dict "Context" . "Type" "rss") -}}
             {{- if $image.exists -}}
-            {{ $content }}</description>
+                {{ "<" | html }}img src="{{ $image.permalink | absURL }}" alt="Featured image of post {{ .Title }}" {{ "/>" | html}}
+            {{- end -}}{{ $content }}</description>
         </item>
         {{ end }}
     </channel>
