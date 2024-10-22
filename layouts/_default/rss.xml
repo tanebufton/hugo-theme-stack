@@ -39,7 +39,7 @@
         <description>
             {{- $image := partial "helper/image" (dict "Context" . "Type" "rss") -}}
             {{- if $image.exists -}}
-            {{- end -}}{{ $content }}</description>
+            {{ $content }}</description>
         </item>
         {{ end }}
     </channel>
