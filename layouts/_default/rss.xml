@@ -38,6 +38,7 @@
         <guid>{{ .Permalink }}</guid>
         <description>
             {{- $image := partial "helper/image" (dict "Context" . "Type" "rss") -}}
+            {{- if $image.exists -}}
             {{- end -}}{{ $content }}</description>
         </item>
         {{ end }}
